@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학교 생활 가이드 (통합본)</title>
+    <style>
+        /* -------------------------
+            기본 스타일 (Reset & Basic)
+           ------------------------- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            background-color: #f9faff;
+            line-height: 1.6;
+            transition: background-color 0.3s ease;
+        }
+
+        /* -------------------------
+            언어 선택 버튼 (공통)
+           ------------------------- */
+        .lang-switcher {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f0f3f8;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .lang-switcher button {
+            background-color: transparent;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease;
+        }
+        .lang-switcher button:hover {
+            background-color: #e5e7eb;
+        }
+        .lang-switcher button.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+
+        /* -------------------------
+            상단 영웅(Hero) 섹션 - index.html
+           ------------------------- */
+        .hero-section {
+            background: linear-gradient(135deg, #eaf6ff 0%, #ffffff 70%, #fffef4 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .promo-text {
+            color: #d97706;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin: 0 0 10px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            font-weight: 800;
+        }
+
+        h1 .blue {
+            color: #2563eb;
+            display: block;
+        }
+
+        h1 .black {
+            color: #1f2937;
+            display: block;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #4b5563;
+            margin-top: 15px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* -------------------------
+            버튼 스타일 (수정: 2개 버튼 정렬)
+           ------------------------- */
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* 버튼 사이 간격 추가 */
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            white-space: nowrap; /* 버튼 텍스트가 줄바꿈되지 않도록 방지 */
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #ffffff;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+
+        /* -------------------------
+            메인 콘텐츠 (카드 그리드) - index.html
+           ------------------------- */
+        main {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+            padding: 25px;
+            flex-basis: 270px;
+            flex-grow: 1;
+            max-width: 300px;
+            box-sizing: border-box;
+            /* 링크로 사용할 때 hover 효과 추가 */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        .card article {
+            /* <a> 태그 안에 <article>을 넣기 위해 스타일 조정 */
+            display: block;
+        }
+
+        .card .icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            color: #111827;
+            margin: 0 0 8px 0;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* -------------------------
+            서브 페이지 공통 스타일
+           ------------------------- */
+        .content-view header {
+            background-color: #ffffff;
+            padding: 30px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center;
+        }
+        .content-view header h1 {
+            font-size: 1.8rem;
+            color: #1f2937;
+            margin: 0 0 10px 0;
+        }
+        .content-view header p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #3b82f6;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .content-view main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .content-view section {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        .content-view section h2 {
+            font-size: 1.4rem;
+            color: #2563eb;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        /* -------------------------
+            document_guide.html 및 korean_culture.html (list, accordion)
+           ------------------------- */
+        .principles ul, .general-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .principles ul li, .general-list ul li {
+            background: #eef2ff; /* 연한 파란색 배경 */
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #1f2937;
+        }
+        .general-list ul li strong {
+            color: #3b82f6;
+        }
+        .principles h2 {
+            margin-top: 0;
+        }
+
+        /* 용어 사전 테이블 (document_guide, education_language, korean_culture 공통) */
+        .dictionary table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .dictionary th, .dictionary td {
+            border: 1px solid #e5e7eb;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        .dictionary th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+            color: #3b82f6; /* education_language에만 있던 스타일 */
+            text-align: center; /* education_language에만 있던 스타일 */
+        }
+        .dictionary tr:nth-child(even) {
+            background-color: #fcfcfc; /* education_language에만 있던 스타일 */
+        }
+        
+
+        /* 문서 템플릿/FAQ - 아코디언 스타일 (document_guide, korean_culture 공통) */
+        .accordion-item {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            background-color: #f9fafb;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #374151;
+        }
+        .accordion-header:hover {
+            background-color: #f3f4f6;
+        }
+        .accordion-content {
+            padding: 15px;
+            background-color: #ffffff;
+            display: none; /* JavaScript로 토글 */
+        }
+        .accordion-content pre {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap; /* 텍스트 줄바꿈 */
+        }
+        .accordion-content p {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+        .accordion-header span.icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        .accordion-item.active .accordion-header span.icon {
+            transform: rotate(90deg);
+        }
+
+        /* -------------------------
+            education_language.html (phrase-section)
+           ------------------------- */
+        .phrase-section .phrase-box {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #fff;
+        }
+        .phrase-section h3 {
+            font-size: 1.2rem;
+            color: #1f2937;
+            margin-top: 0;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .phrase-table td {
+            padding: 8px 0;
+            border-bottom: 1px dotted #e5e7eb;
+        }
+        .phrase-table tr:last-child td {
+            border-bottom: none;
+        }
+        .phrase-table td:first-child {
+            font-weight: 600;
+            color: #3b82f6;
+            width: 25%;
+        }
+        .phrase-table td p {
+            margin: 0;
+        }
+
+        /* -------------------------
+            반응형 디자인 (모바일)
+           ------------------------- */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section .description {
+                font-size: 1rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px; /* 모바일에서 버튼 간격 조정 */
+            }
+
+            .btn {
+                width: 80%;
+                max-width: 300px;
+                text-align: center;
+                margin-top: 0;
+            }
+
+            /* 서브 페이지 반응형 */
+            .content-view header h1 { font-size: 1.5rem; }
+            .dictionary th, .dictionary td { padding: 8px; }
+            .accordion-header { font-size: 1rem; }
+            .phrase-table td:first-child { width: 30%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switcher">
+        <button onclick="changeLanguage('ko')" id="lang-btn-ko" class="active">한국어</button>
+        <button onclick="changeLanguage('en')" id="lang-btn-en">English</button>
+        <button onclick="changeLanguage('zh')" id="lang-btn-zh">中文</button>
+        <button onclick="changeLanguage('vi')" id="lang-btn-vi">Tiếng Việt</button>
+    </div>
+
+    <div id="view-index" class="content-view">
+        <header class="hero-section">
+            <p class="promo-text" data-key="promo">☆ 외국인 가족을 위한 맞춤 서비스</p>
+            <h1>
+                <span class="blue" data-key="title1">학교 생활 가이드</span>
+                <span class="black" data-key="title2">이제 더 쉽게</span>
+            </h1>
+            <p class="description" data-key="desc">AI와 함께 한국 학교 생활을 쉽고 편리하게 시작하세요</p>
+            
+            <div class="button-container">
+                <a href="#" class="btn btn-primary" data-key="btn1">○ AI 멘토 상담 →</a>
+                
+                <a href="school_notice_translator.html" class="btn btn-secondary" data-key="btn2">📢 가정통신문 번역 →</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="card-grid">
+                <a href="#document_guide" onclick="navigateTo('document_guide'); return false;" class="card" style="text-decoration: none; color: inherit;">
+                    <article>
+                        <div class="icon">📄</div>
+                        <h2 data-key="card1Title">학교 문서 작성 가이드</h2>
+                        <p data-key="card1Desc">결석계, 조퇴계 등 필수 서류 작성법</p>
+                    </article>
+                </a>
+                
+                <a href="#korean_culture" onclick="navigateTo('korean_culture'); return false;" class="card" style="text-decoration: none; color: inherit;">
+                    <article>
+                        <div class="icon">🇰🇷</div>
+                        <h2 data-key="card3Title">한국 학교 문화</h2>
+                        <p data-key="card3Desc">한국 학교 문화와 예절 알아보기</p>
+                    </article>
+                </a>
+                
+                <a href="#education_language" onclick="navigateTo('education_language'); return false;" class="card" style="text-decoration: none; color: inherit;">
+                    <article>
+                        <div class="icon">📖</div>
+                        <h2 data-key="card4Title">알고 가야 할 필수 교육 언어</h2>
+                        <p data-key="card4Desc">교육 용어 사전과 발음 가이드</p>
+                    </article>
+                </a>
+            </section>
+        </main>
+    </div>
+
+    <div id="view-document_guide" class="content-view" style="display:none;">
+        <header>
+            <a href="#index" onclick="navigateTo('index'); return false;" class="back-link" data-key="backLink_doc">← 메인으로 돌아가기</a>
+            <h1 data-key="mainTitle_doc">학교 생활 필수 문서 작성 가이드</h1>
+            <p data-key="mainSubtitle_doc">결석계, 체험학습 신청서 등 학교에 제출하는 주요 문서의 다국어 템플릿과 작성 원칙을 제공합니다.</p>
+            <p data-key="disclaimer_doc" style="color: #ef4444; font-weight: bold;">[참고] 학교별 양식과 규정이 다를 수 있습니다. 반드시 학교 안내문을 최우선으로 따르세요.</p>
+        </header>
+
+        <main>
+            <section class="principles">
+                <h2 data-key="principleTitle">0) 작성 원칙(공통)</h2>
+                <ul data-key="principleList"></ul>
+                <h2 data-key="quickTitle" style="margin-top: 20px; border-bottom: none;">2) 빠른 표현(사유) 예시</h2>
+                <div data-key="quickReasons"></div>
+            </section>
+
+            <section class="dictionary">
+                <h2 data-key="dictTitle_doc">1) 공통 용어 미니사전 (KO/EN/ZH/VI)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-key="ko_th">KO</th>
+                            <th data-key="en_th">EN</th>
+                            <th data-key="zh_th">ZH(简)</th>
+                            <th data-key="vi_th">VI</th>
+                        </tr>
+                    </thead>
+                    <tbody data-key="dictBody_doc"></tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2 data-key="docGuideTitle">3) 문서별 가이드 & 다국어 템플릿</h2>
+                
+                <div class="accordion-container">
+                    <div class="accordion-item" id="templateA">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="templateA_title">A. 결석계/지각계/조퇴계</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong data-key="templateA_when_strong">언제?</strong> <span data-key="templateA_when">질병, 가족 행사, 관공서 방문, 시험/면접, 기타 불가피한 사유일 때.</span></p>
+                            <p style="margin-top: 10px;"><strong data-key="templateA_items_strong">필수 항목:</strong> <span data-key="templateA_items">학생 정보; 날짜/시간; 사유(간단히); 증빙서류 여부; 보호자 서명/연락처; 제출일.</span></p>
+                            <p style="margin-top: 15px; font-weight: bold;" data-key="templateA_template_title">템플릿:</p>
+                            <pre data-key="templateA_template"></pre>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item" id="templateB">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="templateB_title">B. 체험학습 신청서/보고서</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong data-key="templateB_when_strong">언제?</strong> <span data-key="templateB_when">가족 여행, 친인척 방문, 직업 체험 등 학교 밖 학습이 필요할 때.</span></p>
+                            <p style="margin-top: 10px;"><strong data-key="templateB_items_strong">필수 항목:</strong> <span data-key="templateB_items">학생 정보; 기간/장소; 학습 목표/내용; 안전 계획; 보호자 서명; (보고서의 경우) 소감 및 증빙.</span></p>
+                            <p style="margin-top: 15px; font-weight: bold;" data-key="templateB_template_title">템플릿 (신청서):</p>
+                            <pre data-key="templateB_template"></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item" id="templateC">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="templateC_title">C. 현장체험/행사 참여 동의서</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong data-key="templateC_when_strong">언제?</strong> <span data-key="templateC_when">소풍, 수학여행, 견학, 공연/대회 참가 등 단체 활동 시.</span></p>
+                            <p style="margin-top: 10px;"><strong data-key="templateC_items_strong">필수 항목:</strong> <span data-key="templateC_items">행사명/일정/장소; 비상연락망; 건강 정보(알레르기/투약); 안전 동의; 서명.</span></p>
+                            <p style="margin-top: 15px; font-weight: bold;" data-key="templateC_template_title">템플릿:</p>
+                            <pre data-key="templateC_template"></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item" id="templateD">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="templateD_title">D. 학부모 상담(면담) 신청서</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong data-key="templateD_when_strong">언제?</strong> <span data-key="templateD_when">학업, 생활, 행동 등 전반적인 상담을 요청할 때.</span></p>
+                            <p style="margin-top: 10px;"><strong data-key="templateD_items_strong">필수 항목:</strong> <span data-key="templateD_items">희망 주제; 희망 일정(복수 옵션); 채널(대면/전화/온라인); 연락처.</span></p>
+                            <p style="margin-top: 15px; font-weight: bold;" data-key="templateD_template_title">템플릿:</p>
+                            <pre data-key="templateD_template"></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="view-education_language" class="content-view" style="display:none;">
+        <header>
+            <a href="#index" onclick="navigateTo('index'); return false;" class="back-link" data-key="backLink_lang">← 메인으로 돌아가기</a>
+            <h1 data-key="mainTitle_lang">알고 가야 할 필수 교육 언어</h1>
+            <p data-key="mainSubtitle_lang">한국 학교 생활에 자주 접하는 필수 용어와 표현을 4개 언어로 안내합니다.</p>
+        </header>
+        <main>
+            <section class="dictionary">
+                <h2 data-key="section1Title">1) 핵심 교육 용어 미니사전 (KO/EN/ZH/VI)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-key="ko_th">KO</th>
+                            <th data-key="en_th">EN</th>
+                            <th data-key="zh_th">ZH(简)</th>
+                            <th data-key="vi_th">VI</th>
+                        </tr>
+                    </thead>
+                    <tbody data-key="dictBody_lang"></tbody>
+                </table>
+            </section>
+
+            <section class="phrase-section">
+                <h2 data-key="section2Title">2) 필수 소통 문장틀 (바로 쓰기)</h2>
+
+                <div class="phrase-box">
+                    <h3 data-key="phraseTitleA">A) 학생 → 교사 (질문/요청 시)</h3>
+                    <table class="phrase-table">
+                        <tr>
+                            <td data-key="phraseA_ko">질문/재설명 요청</td>
+                            <td><p data-key="phraseA_text"></p></td>
+                        </tr>
+                        <tr>
+                            <td data-key="phraseB_ko">마감/형식 확인</td>
+                            <td><p data-key="phraseB_text"></p></td>
+                        </tr>
+                        <tr>
+                            <td data-key="phraseC_ko">조퇴/보건실 요청</td>
+                            <td><p data-key="phraseC_text"></p></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="phrase-box">
+                    <h3 data-key="phraseTitleB">B) 학부모 → 교사/학교 (연락/협조 요청 시)</h3>
+                    <table class="phrase-table">
+                        <tr>
+                            <td data-key="phraseD_ko">가정통신문 문의</td>
+                            <td><p data-key="phraseD_text"></p></td>
+                        </tr>
+                        <tr>
+                            <td data-key="phraseE_ko">상담 요청/예약</td>
+                            <td><p data-key="phraseE_text"></p></td>
+                        </tr>
+                        <tr>
+                            <td data-key="phraseF_ko">식단/건강 협조</td>
+                            <td><p data-key="phraseF_text"></p></td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            
+            <section>
+                <h2 data-key="section3Title">3) 문서/소통 시 실수 방지 규칙</h2>
+                <div class="general-list">
+                    <ul>
+                        <li data-key="rule1"></li>
+                        <li data-key="rule2"></li>
+                        <li data-key="rule3"></li>
+                        <li data-key="rule4"></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="view-korean_culture" class="content-view" style="display:none;">
+        <header>
+            <a href="#index" onclick="navigateTo('index'); return false;" class="back-link" data-key="backLink_culture">← 메인으로 돌아가기</a>
+            <h1 data-key="mainTitle_culture">한국 학교 문화 핵심 가이드</h1>
+            <p data-key="mainSubtitle_culture">하루 일과, 호칭, 예절, 학부모 참여 등 한국 학교 생활에 필요한 모든 문화를 안내합니다.</p>
+            <p data-key="disclaimer_culture" style="color: #d97706; font-weight: bold;">[참고] 학교·학년·담임 교사에 따라 세부 규정은 달라질 수 있습니다. 학교 공지사항을 최우선으로 따르세요.</p>
+        </header>
+
+        <main>
+            <section>
+                <h2 data-key="section1Title_culture">1) 하루 일과·시간표 & 교실 규범</h2>
+                <div class="accordion-container">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="accA_title">하루 일과와 시간 관리</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content general-list">
+                            <ul data-key="accA_list"></ul>
+                            <p style="margin-top: 15px; font-weight: 600;" data-key="accA_quick_title">👉 빠른 표현(지각 예시):</p>
+                            <p data-key="accA_quick_phrase" style="background-color: #f3f4f6; padding: 8px; border-radius: 4px;"></p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="accB_title">교실 규범 및 복장</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content general-list">
+                            <p style="font-weight: 600; color: #3b82f6;" data-key="accB_do_title">✅ 꼭 해야 할 것 (Do):</p>
+                            <ul data-key="accB_do_list" style="margin-top: 0;"></ul>
+                            <p style="font-weight: 600; color: #ef4444;" data-key="accB_dont_title">❌ 피해야 할 것 (Don't):</p>
+                            <ul data-key="accB_dont_list" style="margin-top: 0;"></ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="general-list">
+                <h2 data-key="section2Title_culture">2) 학교 구성원·호칭 및 연락</h2>
+                <ul data-key="section2List"></ul>
+            </section>
+
+            <section class="dictionary">
+                <h2 data-key="dictTitle_culture">3) 자주 쓰는 학교 용어 미니사전 (KO/EN/ZH/VI)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-key="ko_th">KO</th>
+                            <th data-key="en_th">EN</th>
+                            <th data-key="zh_th">ZH(简)</th>
+                            <th data-key="vi_th">VI</th>
+                        </tr>
+                    </thead>
+                    <tbody data-key="dictBody_culture"></tbody>
+                </table>
+            </section>
+
+            <section class="general-list">
+                <h2 data-key="section4Title">4) 문화 이해 포인트 & 새 학생 체크리스트</h2>
+                <h3 data-key="cultureTitle" style="color: #2563eb; margin-bottom: 5px;">문화 이해 포인트</h3>
+                <ul data-key="cultureList"></ul>
+                <p style="margin-top: 15px; font-weight: 600;" data-key="culture_quick_title">👉 빠른 표현(예의 바른 시작):</p>
+                <p data-key="culture_quick_phrase" style="background-color: #f3f4f6; padding: 8px; border-radius: 4px;"></p>
+
+                <h3 data-key="checklistTitle" style="color: #2563eb; margin-top: 30px; margin-bottom: 5px;">새 학생/가정용 체크리스트</h3>
+                <ul data-key="checklistList"></ul>
+            </section>
+            
+            <section>
+                <h2 data-key="section5Title">5) 자주 묻는 질문 (FAQ)</h2>
+                <div class="accordion-container">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="faqA_q">Q1. 수업 시간에 휴대폰 사용이 가능한가요?</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p data-key="faqA_a"></p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="faqB_q">Q2. 채식/할랄 식단 등 급식 조절이 가능한가요?</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p data-key="faqB_a"></p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="faqC_q">Q3. 숙제가 어려워요. 어떻게 도와줄 수 있나요?</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p data-key="faqC_a"></p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-key="faqD_q">Q4. 친구가 괴롭힘을 당하는 것 같아요.</span>
+                            <span class="icon">▶</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p data-key="faqD_a"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // 모든 페이지의 번역문 데이터 통합
+        const translations = {
+            "ko": {
+                // index.html (Main Page)
+                "promo": "☆ 외국인 가족을 위한 맞춤 서비스",
+                "title1": "학교 생활 가이드",
+                "title2": "이제 더 쉽게",
+                "desc": "AI와 함께 한국 학교 생활을 쉽고 편리하게 시작하세요",
+                "btn1": "○ AI 멘토 상담 →",
+                "btn2": "📢 가정통신문 번역 →",
+                "card1Title": "학교 문서 작성 가이드",
+                "card1Desc": "결석계, 조퇴계 등 필수 서류 작성법",
+                "card3Title": "한국 학교 문화",
+                "card3Desc": "한국 학교 문화와 예절 알아보기",
+                "card4Title": "알고 가야 할 필수 교육 언어",
+                "card4Desc": "교육 용어 사전과 발음 가이드",
+                
+                // document_guide.html
+                "backLink_doc": "← 메인으로 돌아가기",
+                "mainTitle_doc": "학교 생활 필수 문서 작성 가이드",
+                "mainSubtitle_doc": "결석계, 체험학습 신청서 등 학교에 제출하는 주요 문서의 다국어 템플릿과 작성 원칙을 제공합니다.",
+                "disclaimer_doc": "[참고] 학교별 양식과 규정이 다를 수 있습니다. 반드시 학교 안내문을 최우선으로 따르세요.",
+                "principleTitle": "1) 작성 원칙(공통)",
+                "principleList": [ "정확한 기본정보: 학생 이름(여권/학교 등록명과 동일), 학년·반·번호, 생년월일.", "날짜·기간 표기: YYYY-MM-DD 형식 권장(예: 2025-10-24), 기간은 시작~종료.", "연락처: 보호자 휴대전화 + 비상연락처(가능하면 1개 추가).", "사유는 간단 사실 위주: 1~2문장, 민감정보 최소화(진단명은 요구될 때만).", "증빙서류: 병원 진단서/영수증, 항공권·예약내역, 사진 등. 첨부 여부를 명시.", "서명/동의: 자필 또는 전자서명(학교 지침에 따름). 학생·보호자 서명란 구분.", "제출 경로: 담임/행정실/학년부/전자제출(알림장·NEIS·학교앱) 중 학교 지침 준수.", "마감 준수: 사전 제출 원칙(불가 시 사후 즉시). 사본을 사진으로 보관." ],
+                "quickTitle": "2) 빠른 표현(사유) 예시",
+                "quickReasons": "• 병원 진료로 결석합니다.<br>• 가족 일정으로 조퇴가 필요합니다.<br>• 알레르기 검사를 받습니다.",
+                "dictTitle_doc": "3) 공통 용어 미니사전 (KO/EN/ZH/VI)",
+                "dictBody_doc": [ ["결석", "Absence", "缺席", "Vắng mặt"], ["지각", "Tardy", "迟到", "Đi trễ"], ["조퇴", "Early leave", "早退", "Về sớm"], ["체험학습", "Experiential learning", "体验学习", "Học trải nghiệm"], ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["담임교사", "Homeroom teacher", "班主任", "GVC phụ trách lớp"], ["사유", "Reason", "事由", "Lý do"], ["증빙서류", "Supporting Docs", "佐证材料", "Tài liệu chứng minh"], ["서명", "Signature", "签名", "Chữ ký"] ],
+                "docGuideTitle": "4) 문서별 가이드 & 다국어 템플릿",
+                "templateA_title": "A. 결석계/지각계/조퇴계",
+                "templateA_when_strong": "언제?", "templateA_when": "질병, 가족 행사, 관공서 방문, 시험/면접, 기타 불가피한 사유일 때.",
+                "templateA_items_strong": "필수 항목:", "templateA_items": "학생 정보; 날짜/시간; 사유(간단히); 증빙서류 여부; 보호자 서명/연락처; 제출일.",
+                "templateA_template_title": "템플릿:",
+                "templateA_template": "제목: 결석계/지각계/조퇴계\n학생: {이름} ({학년/반/번호}번 / 생년월일 {YYYY-MM-DD})\n기간/일시: {YYYY-MM-DD 또는 HH:MM}\n사유/내용: {간단히 1~2문장}\n증빙서류: {진단서/예약내역/없음}\n요청사항(선택): {예: 전화 연락 부탁드립니다}\n보호자 서명/연락처: {서명} / {전화}\n제출일: {YYYY-MM-DD}",
+                "templateB_title": "B. 체험학습 신청서/보고서",
+                "templateB_when_strong": "언제?", "templateB_when": "가족 여행, 친인척 방문, 직업 체험 등 학교 밖 학습이 필요할 때.",
+                "templateB_items_strong": "필수 항목:", "templateB_items": "학생 정보; 기간/장소; 학습 목표/내용; 안전 계획; 보호자 서명; (보고서의 경우) 소감 및 증빙.",
+                "templateB_template_title": "템플릿 (신청서):",
+                "templateB_template": "제목: 체험학습 신청서\n학생: {이름} ({학년/반/번호}번 / 생년월일 {YYYY-MM-DD})\n기간: {YYYY-MM-DD} ~ {YYYY-MM-DD}\n장소: {예: 국립과천과학관 / 가족 친척집}\n학습 목표/내용: {예: 과학 전시 관람 및 보고서 작성}\n안전 계획: {보호자 동행/연락 가능/보험 가입 여부}\n증빙서류: {일정표/예약내역/없음}\n보호자 서명/연락처: {서명} / {전화}",
+                "templateC_title": "C. 현장체험/행사 참여 동의서",
+                "templateC_when_strong": "언제?", "templateC_when": "소풍, 수학여행, 견학, 공연/대회 참가 등 단체 활동 시.",
+                "templateC_items_strong": "필수 항목:", "templateC_items": "행사명/일정/장소; 비상연락망; 건강 정보(알레르기/투약); 안전 동의; 서명.",
+                "templateC_template_title": "템플릿:",
+                "templateC_template": "제목: 행사 참여 동의서\n행사명/장소/일정: {행사명}, {장소}, {YYYY-MM-DD (HH:MM~HH:MM)}\n학생: {이름} ({학년/반/번호}번)\n건강 정보: {알레르기/투약/없음}\n비상 연락처: {보호자1 전화} / {보호자2 전화}\n안전 동의: 행사 기간 동안 학교 안전 지침을 준수하는 것에 동의합니다.\n보호자 서명: {서명}",
+                "templateD_title": "D. 학부모 상담(면담) 신청서",
+                "templateD_when_strong": "언제?", "templateD_when": "학업, 생활, 행동 등 전반적인 상담을 요청할 때.",
+                "templateD_items_strong": "필수 항목:", "templateD_items": "희망 주제; 희망 일정(복수 옵션); 채널(대면/전화/온라인); 연락처.",
+                "templateD_template_title": "템플릿:",
+                "templateD_template": "제목: 상담 신청서\n학생: {이름} ({학년/반/번호}번)\n주제: {예: 숙제 미제출/친구 관계/진로 상담}\n희망 일정: {1지망 날짜/시간}, {2지망 날짜/시간}\n방식: {대면/전화/화상}\n연락처: {전화}\n보호자 서명: {서명}",
+
+                // education_language.html
+                "backLink_lang": "← 메인으로 돌아가기",
+                "mainTitle_lang": "알고 가야 할 필수 교육 언어",
+                "mainSubtitle_lang": "한국 학교 생활에 자주 접하는 필수 용어와 표현을 4개 언어로 안내합니다.",
+                "section1Title": "1) 핵심 교육 용어 미니사전 (KO/EN/ZH/VI)",
+                "dictBody_lang": [ ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["출결", "Attendance", "出勤", "Đi học/vắng mặt"], ["수행평가", "Performance assessment", "过程性评价", "Đánh giá thực hiện"], ["보건실/행정실", "Health room/Admin office", "保健室/行政办公室", "Phòng y tế/Hành chính"], ["준비물/제출 마감", "Supplies/Deadline", "学习用品/截止日期", "Dụng cụ/Hạn nộp"], ["동의서/회신서", "Consent/Reply slip", "同意书/回执", "Giấy đồng ý/phiếu phản hồi"] ],
+                "section2Title": "2) 필수 소통 문장틀 (바로 쓰기)",
+                "phraseTitleA": "A) 학생 → 교사 (질문/요청 시)",
+                "phraseA_ko": "질문/재설명 요청", "phraseA_text": "선생님, (과제/공지)를 다시 설명해 주실 수 있나요?",
+                "phraseB_ko": "마감/형식 확인", "phraseB_text": "마감일이 언제인가요? 파일 형식을 알려주세요.",
+                "phraseC_ko": "조퇴/보건실 요청", "phraseC_text": "건강 문제로 조퇴가 필요합니다. 보건실에 먼저 가도 될까요?",
+                "phraseTitleB": "B) 학부모 → 교사/학교 (연락/협조 요청 시)",
+                "phraseD_ko": "가정통신문 문의", "phraseD_text": "가정통신문의 {일정/내용}에 대해 자세히 여쭙고 싶습니다.",
+                "phraseE_ko": "상담 요청/예약", "phraseE_text": "선생님과 상담을 요청합니다. 가능한 시간대를 알려주세요.",
+                "phraseF_ko": "식단/건강 협조", "phraseF_text": "아이가 알레르기가 있어 대체식이 필요합니다. 절차를 안내해 주세요.",
+                "section3Title": "3) 문서/소통 시 실수 방지 규칙",
+                "rule1": "<strong>날짜 표기:</strong> YYYY-MM-DD 형식 (예: 2025-10-24). 기간은 시작일 ~ 종료일.",
+                "rule2": "<strong>시간 표기:</strong> 24시간제 권장 (예: 08:30, 13:10).",
+                "rule3": "<strong>파일명 규칙:</strong> 2025-10-24_학번_이름_과목 (띄어쓰기/특수문자 피하기).",
+                "rule4": "<strong>연락처 표기:</strong> 하이픈 유지(010-XXXX-YYYY) 또는 국가번호(+82) 포함.",
+
+                // korean_culture.html
+                "backLink_culture": "← 메인으로 돌아가기",
+                "mainTitle_culture": "한국 학교 문화 핵심 가이드",
+                "mainSubtitle_culture": "하루 일과, 호칭, 예절, 학부모 참여 등 한국 학교 생활에 필요한 모든 문화를 안내합니다.",
+                "disclaimer_culture": "[참고] 학교·학년·담임 교사에 따라 세부 규정은 달라질 수 있습니다. 학교 공지사항을 최우선으로 따르세요.",
+                "section1Title_culture": "1) 하루 일과·시간표 & 교실 규범",
+                "accA_title": "하루 일과와 시간 관리",
+                "accA_list": ["<strong>등교 (Arrive):</strong> 보통 08:00 전후. 지각은 담임에게 사유 전달.", "<strong>수업 (Class):</strong> 40~50분 단위, 과목별 교실 이동은 중·고등학교에서 빈번.", "<strong>쉬는 시간 (Break):</strong> 10분 내외. 다음 수업 준비, 화장실, 물 보충.", "<strong>점심 (Lunch):</strong> 급식(학교에서 제공) 또는 도시락(학교 지침 확인).", "<strong>종례 (Closing):</strong> 숙제·공지 확인. 이후 방과후수업/동아리/자율학습."],
+                "accA_quick_title": "👉 빠른 표현(지각 예시):",
+                "accA_quick_phrase": "오늘 지각합니다. 8시 30분 도착 예정입니다.",
+                "accB_title": "교실 규범 및 복장",
+                "accB_do_title": "✅ 꼭 해야 할 것 (Do):",
+                "accB_do_list": ["명찰, 필기도구, 물통 준비", "과제 마감일 준수", "시간 준수: 종이 울리기 전 착석 및 준비물 확인"],
+                "accB_dont_title": "❌ 피해야 할 것 (Don't):",
+                "accB_dont_list": ["수업 중 간식 섭취", "허가 없는 촬영 및 녹화", "교내 복장/두발 규정 위반 (학교 지침 확인)"],
+                "section2Title_culture": "2) 학교 구성원·호칭 및 연락",
+                "section2List": ["<strong>담임교사 (Homeroom teacher):</strong> 출결·생활·가정통신문 주요 창구.", "<strong>교과담당교사 (Subject teacher):</strong> 과목 수업·평가·과제 안내.", "<strong>호칭:</strong> 교사에게는 '선생님' 호칭 + 존댓말(예: '선생님, 질문 있습니다'). 동년배와 초면일 때는 존댓말이 안전."],
+                "dictTitle_culture": "3) 자주 쓰는 학교 용어 미니사전 (KO/EN/ZH/VI)",
+                "dictBody_culture": [ ["담임교사", "Homeroom teacher", "班主任", "GVC phụ trách lớp"], ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["수행평가", "Performance assessment", "过程性评价", "Đánh giá thực hiện"], ["생활기록부", "Student record", "学生成长记录", "Học bạ"], ["보건실", "Health room", "保健室", "Phòng y tế"], ["방과후학교", "Afterschool program", "课后班", "Chương trình sau giờ học"] ],
+                "section4Title": "4) 문화 이해 포인트 & 새 학생 체크리스트",
+                "cultureTitle": "문화 이해 포인트",
+                "cultureList": ["<strong>집단 활동:</strong> 팀워크·역할 분담을 중시합니다. 반장, 청소 당번 등이 순환합니다.", "<strong>존중 표현:</strong> 인사·감사·사과의 짧은 문장(예: '감사합니다/죄송합니다')을 자주 사용하세요.", "<strong>줄서기·순서:</strong> 배식·이동 시 질서를 중요하게 여깁니다.", "<strong>시간 문화:</strong> 5~10분 일찍 도착하는 것을 예의로 보는 경향이 있습니다."],
+                "culture_quick_title": "👉 빠른 표현(예의 바른 시작):",
+                "culture_quick_phrase": "실례합니다 / 죄송합니다만 / 감사합니다.",
+                "checklistTitle": "새 학생/가정용 체크리스트",
+                "checklistList": ["[ ] 담임·교무실·보건실 위치 확인, 연락처 저장", "[ ] 시간표·교과서·실내화·체육복 준비", "[ ] 알레르기·건강 정보 제출, 비상연락망 등록", "[ ] 학교 앱/공지 채널 가입 및 알림 설정", "[ ] 과제·평가 일정 캘린더화, 파일명 규칙 통일"],
+                "section5Title": "5) 자주 묻는 질문 (FAQ)",
+                "faqA_q": "Q1. 수업 시간에 휴대폰 사용이 가능한가요?",
+                "faqA_a": "대부분 제한됩니다. 담임 교사의 지침을 따르세요. 시험 기간에는 휴대폰을 수거하는 것이 일반적입니다.",
+                "faqB_q": "Q2. 채식/할랄 식단 등 급식 조절이 가능한가요?",
+                "faqB_a": "학교마다 가능 여부와 방법이 다르므로, 보건실/급식 담당자와 사전 상담이 필요합니다.",
+                "faqC_q": "Q3. 숙제가 어려워요. 어떻게 도와줄 수 있나요?",
+                "faqC_a": "숙제 안내문을 함께 읽고, 제출 형식(분량/파일명)을 먼저 맞춘 뒤, 이해 안 되는 부분을 질문 리스트로 정리하여 교사에게 질문하도록 하세요.",
+                "faqD_q": "Q4. 친구가 괴롭힘을 당하는 것 같아요.",
+                "faqD_a": "피해 학생의 안전과 보호가 최우선입니다. 담임 교사에게 즉시 알리고 도움을 요청하세요."
+            },
+            // ... (en, zh, vi 등 나머지 번역 데이터는 길어지므로 생략. 원본 파일의 translation을 그대로 통합해야 합니다.)
+            // (Note: For brevity, the full en, zh, vi translations are not copied here, but they must be integrated into the final script.)
+            // 이 곳에 모든 언어의 번역 데이터를 통합해야 합니다.
+            "en": {
+                // index.html (Main Page)
+                "promo": "☆ Customized service for foreign families",
+                "title1": "School Life Guide",
+                "title2": "Now Easier",
+                "desc": "Start your school life in Korea easily and conveniently with AI",
+                "btn1": "○ AI Mentor Consultation →",
+                "btn2": "📢 School Notice Translator →", // 새로 추가
+                "card1Title": "School Document Guide",
+                "card1Desc": "Writing absence forms, early leave forms, etc.",
+                "card3Title": "Korean School Culture",
+                "card3Desc": "Learning about Korean school culture and etiquette",
+                "card4Title": "Essential Educational Language",
+                "card4Desc": "Education glossary and pronunciation guide",
+
+                // document_guide.html
+                "backLink_doc": "← Back to Main",
+                "mainTitle_doc": "Essential School Document Writing Guide",
+                "mainSubtitle_doc": "Provides multilingual templates and writing principles for key documents submitted to school, such as absence reports and experiential learning requests.",
+                "disclaimer_doc": "[Note] Forms and regulations may differ by school/district. Always follow the school's guidelines first.",
+                "principleTitle": "1) Writing Principles (Common)",
+                "principleList": [ "Accurate basic info: Student name (as per passport/school registration), Grade, Class, Number, Date of Birth.", "Date/Period format: YYYY-MM-DD is recommended (e.g., 2025-10-24), period is Start~End.", "Contact: Guardian's cell phone + Emergency contact (1 additional if possible).", "Reason: Simple factual basis (1-2 sentences), minimize sensitive info (diagnosis only when required).", "Supporting Docs: Medical note/receipt, flight/booking details, photos, etc. Specify attachment status.", "Signature/Consent: Handwritten or electronic signature (follow school policy). Distinguish student/guardian signature fields.", "Submission path: Follow school policy among Homeroom/Administration/Grade office/Electronic (App/NEIS/School App).", "Meet deadline: Prior submission rule (immediately after if impossible). Keep a copy as photo/file." ],
+                "quickTitle": "2) Quick Phrases (Reasons) Examples",
+                "quickReasons": "• Absent due to a hospital visit.<br>• An early leave is needed for a family schedule.<br>• Having an allergy test.",
+                "dictTitle_doc": "3) Common Terms Mini-Dictionary (KO/EN/ZH/VI)",
+                "dictBody_doc": [ ["결석", "Absence", "缺席", "Vắng mặt"], ["지각", "Tardy", "迟到", "Đi trễ"], ["조퇴", "Early leave", "早退", "Về sớm"], ["체험학습", "Experiential learning", "体验学习", "Học trải nghiệm"], ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["담임교사", "Homeroom teacher", "班主任", "GVC phụ trách lớp"], ["사유", "Reason", "事由", "Lý do"], ["증빙서류", "Supporting Docs", "佐证材料", "Tài liệu chứng minh"], ["서명", "Signature", "签名", "Chữ ký"] ],
+                "docGuideTitle": "4) Document Guide & Multilingual Templates",
+                "templateA_title": "A. Absence/Tardy/Early Leave Report",
+                "templateA_when_strong": "When?", "templateA_when": "Illness, family event, visit to public office, exam/interview, or other unavoidable reasons.",
+                "templateA_items_strong": "Required:", "templateA_items": "Student info; Date/Time; Reason (brief); Supporting document status; Guardian Signature/Contact; Date of Submission.",
+                "templateA_template_title": "Template:",
+                "templateA_template": "Title: Absence/Tardy/Early Leave Report\nStudent: {Name} ({Grade/Class/No.} / DOB {YYYY-MM-DD})\nDate/Period: {YYYY-MM-DD or HH:MM}\nReason/Details: {1-2 short sentences}\nSupporting Docs: {Medical note/Booking/None}\nRequest (Optional): {e.g., Please call me}\nGuardian Signature/Contact: {Signature} / {Phone}\nDate of Submission: {YYYY-MM-DD}",
+                "templateB_title": "B. Experiential Learning Request/Report",
+                "templateB_when_strong": "When?", "templateB_when": "Family travel, relative visit, career experience, etc., requiring off-campus learning.",
+                "templateB_items_strong": "Required:", "templateB_items": "Student info; Period/Location; Learning Goal/Content; Safety Plan; Guardian Signature; (For report) Impression & Documentation.",
+                "templateB_template_title": "Template (Request Form):",
+                "templateB_template": "Title: Experiential Learning Request\nStudent: {Name} ({Grade/Class/No.} / DOB {YYYY-MM-DD})\nPeriod: {YYYY-MM-DD} ~ {YYYY-MM-DD}\nLocation: {e.g., National Science Museum / Family relative's house}\nLearning Goal/Content: {e.g., Observing physics exhibition and writing a report}\nSafety Plan: {Guardian accompaniment/Contactable/Insurance status}\nSupporting Docs: {Schedule/Booking details/None}\nGuardian Signature/Contact: {Signature} / {Phone}",
+                "templateC_title": "C. Field Trip/School Event Consent",
+                "templateC_when_strong": "When?", "templateC_when": "Excursion, school trip, performance/competition participation, etc.",
+                "templateC_items_strong": "Required:", "templateC_items": "Event name/Schedule/Location; Emergency contact list; Health info (Allergies/Medication); Safety consent; Signature.",
+                "templateC_template_title": "Template:",
+                "templateC_template": "Title: Event Participation Consent\nEvent Name/Location/Schedule: {Event Name}, {Location}, {YYYY-MM-DD (HH:MM~HH:MM)}\nStudent: {Name} ({Grade/Class/No.})\nHealth Info: {Allergy/Medication/None}\nEmergency Contact: {Guardian1 Phone}/{Guardian2 Phone}\nSafety Consent: I agree to comply with school safety guidelines during the event.\nGuardian Signature: {Signature}",
+                "templateD_title": "D. Parent-Teacher/Student Counseling Request",
+                "templateD_when_strong": "When?", "templateD_when": "Requesting counseling for academics, life, or behavior.",
+                "templateD_items_strong": "Required:", "templateD_items": "Desired topic; Desired dates (multiple options); Channel (In-person/Phone/Online); Contact.",
+                "templateD_template_title": "Template:",
+                "templateD_template": "Title: Counseling Request\nStudent: {Name} ({Grade/Class/No.})\nTopic: {e.g., Missing homework/Peer relations/College consultation}\nDesired Dates: {Option 1 Date/Time}, {Option 2 Date/Time}\nMethod: {In-person/Phone/Video}\nContact: {Phone}\nGuardian Signature: {Signature}",
+
+                // education_language.html
+                "backLink_lang": "← Back to Main",
+                "mainTitle_lang": "Essential Educational Language Guide",
+                "mainSubtitle_lang": "Guides essential terms and expressions frequently encountered in Korean school life in four languages.",
+                "section1Title": "1) Core Educational Terms Mini-Dictionary (KO/EN/ZH/VI)",
+                "dictBody_lang": [ ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["출결", "Attendance", "出勤", "Đi học/vắng mặt"], ["수행평가", "Performance assessment", "过程性评价", "Đánh giá thực hiện"], ["보건실/행정실", "Health room/Admin office", "保健室/行政办公室", "Phòng y tế/Hành chính"], ["준비물/제출 마감", "Supplies/Deadline", "学习用品/截止日期", "Dụng cụ/Hạn nộp"], ["동의서/회신서", "Consent/Reply slip", "同意书/回执", "Giấy đồng ý/phiếu phản hồi"] ],
+                "section2Title": "2) Essential Communication Phrases (Ready-to-Use)",
+                "phraseTitleA": "A) Student → Teacher (When asking/requesting)",
+                "phraseA_ko": "Question/Request for re-explanation", "phraseA_text": "Teacher, could you please explain the (assignment/notice) again?",
+                "phraseB_ko": "Check deadline/format", "phraseB_text": "When is the deadline? Please tell me the file format.",
+                "phraseC_ko": "Request early leave/health room", "phraseC_text": "I need to leave early due to a health issue. May I go to the health room first?",
+                "phraseTitleB": "B) Parent → Teacher/School (When contacting/requesting cooperation)",
+                "phraseD_ko": "Inquiry about school notice", "phraseD_text": "I would like to ask more about the {schedule/content} in the school notice.",
+                "phraseE_ko": "Request/book consultation", "phraseE_text": "I request a meeting. Please share your available times.",
+                "phraseF_ko": "Diet/Health Cooperation", "phraseF_text": "My child has an allergy and needs an alternative meal. Please guide us through the procedure.",
+                "section3Title": "3) Rules to Avoid Errors in Documents/Communication",
+                "rule1": "<strong>Date Format:</strong> YYYY-MM-DD (e.g., 2025-10-24). Period is Start Date ~ End Date.",
+                "rule2": "<strong>Time Format:</strong> 24-hour clock recommended (e.g., 08:30, 13:10).",
+                "rule3": "<strong>File Naming Rule:</strong> 2025-10-24_Student ID_Name_Subject (Avoid spaces/special characters).",
+                "rule4": "<strong>Contact Number:</strong> Maintain hyphens (010-XXXX-YYYY) or include country code (+82).",
+
+                // korean_culture.html
+                "backLink_culture": "← Back to Main",
+                "mainTitle_culture": "Korean School Culture Core Guide",
+                "mainSubtitle_culture": "Guides all necessary culture for Korean school life, including daily schedule, titles, etiquette, and parental involvement.",
+                "disclaimer_culture": "[Note] Detailed regulations may differ by school/grade/homeroom teacher. Always follow school announcements first.",
+                "section1Title_culture": "1) Daily Schedule/Timetable & Classroom Norms",
+                "accA_title": "Daily Schedule and Time Management",
+                "accA_list": ["<strong>Arrive:</strong> Usually around 08:00. Report tardiness reasons to the homeroom teacher.", "<strong>Class:</strong> 40-50 minute units, changing classrooms by subject is frequent in middle/high school.", "<strong>Break:</strong> About 10 minutes. Prepare for next class, bathroom, or water refill.", "<strong>Lunch:</strong> School meal service (provided by school) or packed lunch (check school guidelines).", "<strong>Closing:</strong> Checking homework and announcements. Followed by afterschool classes/clubs/self-study."],
+                "accA_quick_title": "👉 Quick Phrase (Lateness Example):",
+                "accA_quick_phrase": "I will be late today. I expect to arrive at 8:30.",
+                "accB_title": "Classroom Norms and Dress Code",
+                "accB_do_title": "✅ Must Do (Do):",
+                "accB_do_list": ["Prepare name tag, writing tools, and water bottle", "Meet assignment deadlines", "Observe time: Be seated and check supplies before the bell rings"],
+                "accB_dont_title": "❌ Must Avoid (Don't):",
+                "accB_dont_list": ["Eating snacks during class", "Filming or recording without permission", "Violating in-school dress/hair code (check school policy)"],
+                "section2Title_culture": "2) School Members, Titles, and Contact",
+                "section2List": ["<strong>Homeroom teacher:</strong> Main contact for attendance/life/school notices.", "<strong>Subject teacher:</strong> Guides subject class/assessment/assignments.", "<strong>Titles:</strong> Address teachers as 'Seonsaengnim' (선생님) + honorific language (e.g., 'Seonsaengnim, I have a question'). Using honorifics is safer when meeting peers for the first time."],
+                "dictTitle_culture": "3) Frequently Used School Terms Mini-Dictionary (KO/EN/ZH/VI)",
+                "dictBody_culture": [ ["담임교사", "Homeroom teacher", "班主任", "GVC phụ trách lớp"], ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["수행평가", "Performance assessment", "过程性评价", "Đánh giá thực hiện"], ["생활기록부", "Student record", "学生成长记录", "Học bạ"], ["보건실", "Health room", "保健室", "Phòng y tế"], ["방과후학교", "Afterschool program", "课后班", "Chương trình sau giờ học"] ],
+                "section4Title": "4) Cultural Understanding Points & New Student Checklist",
+                "cultureTitle": "Cultural Understanding Points",
+                "cultureList": ["<strong>Group Activities:</strong> Emphasize teamwork and role division. Class president, cleaning/meal duties rotate.", "<strong>Respectful Expressions:</strong> Frequently use short phrases for greetings, thanks, apologies (e.g., 'Thank you/I'm sorry').", "<strong>Queuing/Order:</strong> Order is important during meal service and movement.", "<strong>Time Culture:</strong> Tends to view arriving 5-10 minutes early as polite."],
+                "culture_quick_title": "👉 Quick Phrase (Polite Starter):",
+                "culture_quick_phrase": "Excuse me / I'm sorry, but / Thank you.",
+                "checklistTitle": "New Student/Family Checklist",
+                "checklistList": ["[ ] Check location and save contacts for Homeroom/Admin/Nurse's office", "[ ] Prepare timetable, textbooks, indoor shoes, and gym clothes", "[ ] Submit allergy/health information, register emergency contacts", "[ ] Join school app/notice channel and set up alerts", "[ ] Calendarize assignment/assessment dates, unify file naming rules"],
+                "section5Title": "5) Frequently Asked Questions (FAQ)",
+                "faqA_q": "Q1. Can phones be used during class?",
+                "faqA_a": "Mostly restricted. Follow the homeroom teacher's guidance; storing phones during exam periods is typical.",
+                "faqB_q": "Q2. Is it possible to adjust the diet, such as vegetarian/halal meals?",
+                "faqB_a": "Availability and methods vary by school, so prior consultation with the nurse's office/meal service is needed.",
+                "faqC_q": "Q3. Homework is difficult. How can I help?",
+                "faqC_a": "Read the assignment instructions together, first match the submission format (quantity/file name), then organize misunderstood parts into a question list to ask the teacher.",
+                "faqD_q": "Q4. I think a friend is being bullied.",
+                "faqD_a": "The victim's safety and protection are the top priority. Immediately inform the homeroom teacher and ask for help."
+            },
+            "zh": {
+                // index.html (Main Page)
+                "promo": "☆ 为外国家庭提供的定制服务",
+                "title1": "学校生活指南",
+                "title2": "现在更轻松",
+                "desc": "与AI一起轻松便捷地开始您的韩国学校生活",
+                "btn1": "○ AI导师咨询 →",
+                "btn2": "📢 家校通知翻译 →", // 새로 추가
+                "card1Title": "学校文件编写指南",
+                "card1Desc": "缺勤申请、早退申请等必备文件编写方法",
+                "card3Title": "韩国学校文化",
+                "card3Desc": "了解韩国学校文化与礼仪",
+                "card4Title": "必备教育用语",
+                "card4Desc": "教育术语词典及发音指南",
+
+                // document_guide.html
+                "backLink_doc": "← 返回主页",
+                "mainTitle_doc": "学校生活必备文件编写指南",
+                "mainSubtitle_doc": "提供提交给学校的关键文件（如缺勤报告和体验学习申请）的多语言模板和编写原则。",
+                "disclaimer_doc": "[注意] 各学校的格式和规定可能有所不同。请务必优先遵循学校的指导通知。",
+                "principleTitle": "1) 编写原则(通用)",
+                "principleList": [ "准确的基本信息: 学生姓名(与护照/学校注册名一致), 年级、班级、号码, 出生日期。", "日期·期间标记: 推荐使用 YYYY-MM-DD 格式 (例: 2025-10-24), 期间为开始~结束。", "联系方式: 监护人手机 + 紧急联系方式 (如果可能, 增加一个)。", "事由以简单事实为主: 1~2句, 尽量减少敏感信息 (只有在被要求时才提供诊断名称)。", "佐证材料: 医院诊断书/收据, 机票·预订详情, 照片等。明确注明是否附加。", "签名/同意: 亲笔或电子签名 (遵循学校指南)。区分学生和监护人签名栏。", "提交途径: 遵循学校指南, 选择班主任/行政室/年级部/电子提交 (通知栏·NEIS·学校应用) 中的一种。", "遵守截止日期: 原则上提前提交 (如不可能, 事后立即提交)。将副本拍照保存。" ],
+                "quickTitle": "2) 快速表达(事由) 示例",
+                "quickReasons": "• 因去医院就诊而缺席。<br>• 因家庭日程需要早退。<br>• 接受过敏检查。",
+                "dictTitle_doc": "3) 通用术语迷你词典 (KO/EN/ZH/VI)",
+                "dictBody_doc": [ ["결석", "Absence", "缺席", "Vắng mặt"], ["지각", "Tardy", "迟到", "Đi trễ"], ["조퇴", "Early leave", "早退", "Về sớm"], ["체험학습", "Experiential learning", "体验学习", "Học trải nghiệm"], ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["담임교사", "Homeroom teacher", "班主任", "GVC phụ trách lớp"], ["사유", "Reason", "事由", "Lý do"], ["증빙서류", "Supporting Docs", "佐证材料", "Tài liệu chứng minh"], ["서명", "Signature", "签名", "Chữ ký"] ],
+                "docGuideTitle": "4) 文件指南和多语言模板",
+                "templateA_title": "A. 缺勤/迟到/早退申请书",
+                "templateA_when_strong": "何时?", "templateA_when": "疾病, 家庭活动, 访问公共机构, 考试/面试, 或其他不可避免的事由时。",
+                "templateA_items_strong": "必填项:", "templateA_items": "学生信息; 日期/时间; 事由(简述); 佐证材料情况; 监护人签名/联系方式; 提交日期。",
+                "templateA_template_title": "模板:",
+                "templateA_template": "标题: 缺勤/迟到/早退申请书\n学生: {姓名} ({年级/班级/号码}号 / 出生日期 {YYYY-MM-DD})\n期间/时间: {YYYY-MM-DD 或 HH:MM}\n事由/内容: {1-2句简述}\n佐证材料: {诊断书/预约/无}\n备注(可选): {例如: 请来电}\n监护人签名/联系方式: {签名} / {电话}\n提交日期: {YYYY-MM-DD}",
+                "templateB_title": "B. 体验学习申请书/报告书",
+                "templateB_when_strong": "何时?", "templateB_when": "家庭旅行, 探亲访友, 职业体验等需要校外学习时。",
+                "templateB_items_strong": "必填项:", "templateB_items": "学生信息; 期间/地点; 学习目标/内容; 安全计划; 监护人签名; (如果是报告书) 感想及佐证。",
+                "templateB_template_title": "模板 (申请书):",
+                "templateB_template": "标题: 体验学习申请书\n学生: {姓名} ({年级/班级/号码}号 / 出生日期 {YYYY-MM-DD})\n期间: {YYYY-MM-DD} ~ {YYYY-MM-DD}\n地点: {例如: 国立科技馆 / 亲戚家}\n学习目标/内容: {例如: 观察科学展览并编写报告}\n安全计划: {监护人同行/可联系/保险加入情况}\n佐证材料: {日程表/预约详情/无}\n监护人签名/联系方式: {签名} / {电话}",
+                "templateC_title": "C. 现场体验/活动参与同意书",
+                "templateC_when_strong": "何时?", "templateC_when": "远足, 修学旅行, 参观, 参与演出/竞赛等集体活动时。",
+                "templateC_items_strong": "必填项:", "templateC_items": "活动名称/日程/地点; 紧急联系方式; 健康信息(过敏/服药); 安全同意; 签名。",
+                "templateC_template_title": "模板:",
+                "templateC_template": "标题: 活动参与同意书\n活动名称/地点/日程: {活动名称}, {地点}, {YYYY-MM-DD (HH:MM~HH:MM)}\n学生: {姓名} ({年级/班级/号码}号)\n健康信息: {过敏/服药/无}\n紧急联系方式: {监护人1 电话} / {监护人2 电话}\n安全同意: 我同意在活动期间遵守学校安全指南。\n监护人签名: {签名}",
+                "templateD_title": "D. 监护人咨询(面谈) 申请书",
+                "templateD_when_strong": "何时?", "templateD_when": "要求进行学业, 生活, 行为等全面咨询时。",
+                "templateD_items_strong": "必填项:", "templateD_items": "期望主题; 期望日程(提供多个选项); 渠道(面谈/电话/在线); 联系方式。",
+                "templateD_template_title": "模板:",
+                "templateD_template": "标题: 咨询申请书\n学生: {姓名} ({年级/班级/号码}号)\n主题: {例如: 缺交作业/同伴关系/升学咨询}\n期望日程: {第一志愿 日期/时间}, {第二志愿 日期/时间}\n方式: {面谈/电话/视频}\n联系方式: {电话}\n监护人签名: {签名}",
+
+                // education_language.html
+                "backLink_lang": "← 返回主页",
+                "mainTitle_lang": "必备教育用语指南",
+                "mainSubtitle_lang": "指导韩国学校生活中经常遇到的必备术语和表达方式，提供四种语言版本。",
+                "section1Title": "1) 核心教育术语迷你词典 (KO/EN/ZH/VI)",
+                "dictBody_lang": [ ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["출결", "Attendance", "出勤", "Đi học/vắng mặt"], ["수행평가", "Performance assessment", "过程性评价", "Đánh giá thực hiện"], ["보건실/행정실", "Health room/Admin office", "保健室/行政办公室", "Phòng y tế/Hành chính"], ["준비물/제출 마감", "Supplies/Deadline", "学习用品/截止日期", "Dụng cụ/Hạn nộp"], ["동의서/회신서", "Consent/Reply slip", "同意书/回执", "Giấy đồng ý/phiếu phản hồi"] ],
+                "section2Title": "2) 核心沟通句型 (即用)",
+                "phraseTitleA": "A) 学生 → 教师 (提问/要求时)",
+                "phraseA_ko": "提问/要求再说明", "phraseA_text": "老师, 您能再解释一下 (作业/通知) 吗?",
+                "phraseB_ko": "确认截止日期/格式", "phraseB_text": "截止日期是何时? 请告知文件格式。",
+                "phraseC_ko": "要求早退/去保健室", "phraseC_text": "因健康问题需要早退。我可以先去保健室吗?",
+                "phraseTitleB": "B) 监护人 → 教师/学校 (联系/要求协助时)",
+                "phraseD_ko": "家校通知咨询", "phraseD_text": "我想详细询问一下家校通知的 {日程/内容}。",
+                "phraseE_ko": "咨询要求/预约", "phraseE_text": "我申请与老师进行咨询。请告知您可会面的时间。",
+                "phraseF_ko": "协助饮食/健康", "phraseF_text": "我的孩子有过敏, 需要替代餐。请指导一下程序。",
+                "section3Title": "3) 文书/沟通时避免错误的规则",
+                "rule1": "<strong>日期格式:</strong> YYYY-MM-DD 格式 (例: 2025-10-24)。期间是开始日 ~ 结束日。",
+                "rule2": "<strong>时间格式:</strong> 推荐 24 小时制 (例: 08:30, 13:10)。",
+                "rule3": "<strong>文件名规则:</strong> 2025-10-24_学号_姓名_科目 (避免空格/特殊字符)。",
+                "rule4": "<strong>联系方式标记:</strong> 保持连字符 (010-XXXX-YYYY) 或包含国家代码 (+82)。",
+
+                // korean_culture.html
+                "backLink_culture": "← 返回主页",
+                "mainTitle_culture": "韩国学校文化核心指南",
+                "mainSubtitle_culture": "指导韩国学校生活中所需的所有文化, 包括日常作息、称谓、礼仪和家长参与。",
+                "disclaimer_culture": "[注意] 详细规定可能因学校/年级/班主任而异。请务必优先遵循学校的公告。",
+                "section1Title_culture": "1) 日常作息·时间表 & 教室规范",
+                "accA_title": "日常作息和时间管理",
+                "accA_list": ["<strong>上学 (Arrive):</strong> 通常在 08:00 左右。迟到需向班主任说明事由。", "<strong>上课 (Class):</strong> 以 40-50 分钟为单位, 中学/高中经常按科目更换教室。", "<strong>课间休息 (Break):</strong> 10 分钟左右。准备下一节课, 上厕所, 补充水分。", "<strong>午餐 (Lunch):</strong> 学校供餐 (学校提供) 或自带午餐 (确认学校指南)。", "<strong>放学 (Closing):</strong> 确认作业·通知。之后是课后课程/社团/自习。"],
+                "accA_quick_title": "👉 快速表达(迟到示例):",
+                "accA_quick_phrase": "我今天会迟到, 预计 8:30 到校。",
+                "accB_title": "教室规范及着装",
+                "accB_do_title": "✅ 必须做 (Do):",
+                "accB_do_list": ["准备名牌, 文具, 水瓶", "遵守作业截止日期", "遵守时间: 响铃前就座并检查学习用品"],
+                "accB_dont_title": "❌ 必须避免 (Don't):",
+                "accB_dont_list": ["上课时吃零食", "未经许可进行拍摄及录音", "违反校内着装/发型规定 (确认学校指南)"],
+                "section2Title_culture": "2) 学校成员、称谓及联系",
+                "section2List": ["<strong>班主任 (Homeroom teacher):</strong> 出勤·生活·家校通知的主要窗口。", "<strong>科目负责教师 (Subject teacher):</strong> 指导科目课程·评估·作业。", "<strong>称谓:</strong> 对教师称呼 'Seonsaengnim' (선생님) + 敬语 (例如: '선생님, 질문 있습니다'). 初次接触同龄人时, 使用敬语更安全。"],
+                "dictTitle_culture": "3) 常用的学校术语迷你词典 (KO/EN/ZH/VI)",
+                "dictBody_culture": [ ["담임교사", "Homeroom teacher", "班主任", "GVC phụ trách lớp"], ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["수행평가", "Performance assessment", "过程性评价", "Đánh giá thực hiện"], ["생활기록부", "Student record", "学生成长记录", "Học bạ"], ["보건실", "Health room", "保健室", "Phòng y tế"], ["방과후학교", "Afterschool program", "课后班", "Chương trình sau giờ học"] ],
+                "section4Title": "4) 文化理解要点 & 新生清单",
+                "cultureTitle": "文化理解要点",
+                "cultureList": ["<strong>集体活动:</strong> 重视团队合作·角色分担。班长、打扫值日生等轮流。", "<strong>尊重表达:</strong> 经常使用问候·感谢·道歉的简短句子 (例: '感谢/对不起').", "<strong>排队·顺序:</strong> 供餐·移动时重视秩序。", "<strong>时间文化:</strong> 倾向于认为提前 5-10 分钟到达是礼貌的。"],
+                "culture_quick_title": "👉 快速表达(礼貌开始):",
+                "culture_quick_phrase": "失礼了 / 对不起, 但是 / 谢谢。",
+                "checklistTitle": "新生/家庭清单",
+                "checklistList": ["[ ] 确认并保存班主任·教务室·保健室位置和联系方式", "[ ] 准备时间表、教科书、室内鞋和运动服", "[ ] 提交过敏·健康信息, 登记紧急联系方式", "[ ] 加入学校应用/公告频道并设置提醒", "[ ] 将作业·评估日程日历化, 统一文件名规则"],
+                "section5Title": "5) 常见问题 (FAQ)",
+                "faqA_q": "Q1. 上课时可以使用手机吗?",
+                "faqA_a": "大部分受限。请遵循班主任的指南; 考试期间通常会收缴手机。",
+                "faqB_q": "Q2. 可以调整饮食, 例如素食/清真餐吗?",
+                "faqB_a": "各学校的可用性和方法有所不同, 需要事先与保健室/供餐负责人咨询。",
+                "faqC_q": "Q3. 家庭作业太难了。我如何提供帮助?",
+                "faqC_a": "一起阅读作业指南, 首先确定提交格式 (分量/文件名), 然后将不理解的部分整理成问题清单向老师提问。",
+                "faqD_q": "Q4. 我认为有朋友正在遭受欺凌。",
+                "faqD_a": "受害学生的安... (Korean: 피해 학생의 안전과 보호가 최우선입니다. 담임 교사에게 즉시 알리고 도움을 요청하세요.)" // Not complete in source, using KO translation.
+            },
+            "vi": {
+                // index.html (Main Page)
+                "promo": "☆ Dịch vụ tùy chỉnh cho gia đình người nước ngoài",
+                "title1": "Hướng dẫn Đời sống Học đường",
+                "title2": "Nay đã Dễ dàng hơn",
+                "desc": "Bắt đầu cuộc sống học đường tại Hàn Quốc dễ dàng và tiện lợi cùng AI",
+                "btn1": "○ Tư vấn với Cố vấn AI →",
+                "btn2": "📢 Dịch Thông báo Nhà trường →", // 새로 추가
+                "card1Title": "Hướng dẫn Tài liệu Học đường",
+                "card1Desc": "Cách viết đơn xin nghỉ học, đơn xin về sớm, v.v.",
+                "card3Title": "Văn hóa Học đường Hàn Quốc",
+                "card3Desc": "Tìm hiểu về văn hóa và lễ nghi học đường Hàn Quốc",
+                "card4Title": "Ngôn ngữ Giáo dục Cần biết",
+                "card4Desc": "Từ điển thuật ngữ giáo dục và hướng dẫn phát âm",
+
+                // document_guide.html
+                "backLink_doc": "← Quay lại trang chính",
+                "mainTitle_doc": "Hướng Dẫn Viết Tài Liệu Học Đường Cần Thiết",
+                "mainSubtitle_doc": "Cung cấp các mẫu đa ngôn ngữ và nguyên tắc viết cho các tài liệu chính nộp cho nhà trường, như đơn xin vắng mặt, đơn xin học tập trải nghiệm.",
+                "disclaimer_doc": "[Lưu ý] Các biểu mẫu và quy định có thể khác nhau tùy theo trường/khu vực. Luôn tuân thủ các hướng dẫn của nhà trường là ưu tiên hàng đầu.",
+                "principleTitle": "1) Nguyên tắc Viết (Chung)",
+                "principleList": [ "Thông tin cơ bản chính xác: Tên học sinh (giống với hộ chiếu/đăng ký trường), Khối lớp, Số, Ngày sinh.", "Định dạng Ngày/Thời gian: Khuyến nghị dùng định dạng YYYY-MM-DD (VD: 2025-10-24), Khoảng thời gian là Bắt đầu~Kết thúc.", "Liên hệ: Điện thoại di động của phụ huynh + Liên hệ khẩn cấp (thêm 1 số nếu có thể).", "Lý do chỉ tập trung vào sự kiện đơn giản: 1~2 câu, giảm thiểu thông tin nhạy cảm (chỉ cung cấp tên chẩn đoán khi được yêu cầu).", "Tài liệu chứng minh: Giấy khám/biên lai bệnh viện, chi tiết chuyến bay/đặt chỗ, ảnh, v.v. Chỉ rõ tình trạng đính kèm.", "Chữ ký/Đồng ý: Chữ ký tay hoặc điện tử (theo hướng dẫn của trường). Phân biệt ô chữ ký của học sinh/phụ huynh.", "Đường dẫn nộp: Tuân thủ hướng dẫn của trường, chọn giữa Giáo viên chủ nhiệm/Phòng hành chính/Văn phòng khối lớp/Nộp điện tử (App thông báo/NEIS/App trường).", "Tuân thủ Hạn chót: Nguyên tắc nộp trước (nếu không thể thì ngay sau đó). Giữ lại bản sao dưới dạng ảnh/tệp." ],
+                "quickTitle": "2) Cụm từ Nhanh (Lý do) Ví dụ",
+                "quickReasons": "• Vắng mặt do đi khám bệnh.<br>• Cần về sớm vì lịch trình gia đình.<br>• Đi xét nghiệm dị ứng.",
+                "dictTitle_doc": "3) Từ điển Mini Thuật ngữ Chung (KO/EN/ZH/VI)",
+                "dictBody_doc": [ ["결석", "Absence", "缺席", "Vắng mặt"], ["지각", "Tardy", "迟到", "Đi trễ"], ["조퇴", "Early leave", "早退", "Về sớm"], ["체험학습", "Experiential learning", "体验学习", "Học trải nghiệm"], ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["담임교사", "Homeroom teacher", "班主任", "GVC phụ trách lớp"], ["사유", "Reason", "事由", "Lý do"], ["증빙서류", "Supporting Docs", "佐证材料", "Tài liệu chứng minh"], ["서명", "Signature", "签名", "Chữ ký"] ],
+                "docGuideTitle": "4) Hướng Dẫn Tài Liệu & Mẫu Đa Ngôn Ngữ",
+                "templateA_title": "A. Đơn xin vắng mặt/đi trễ/về sớm",
+                "templateA_when_strong": "Khi nào?", "templateA_when": "Bệnh tật, sự kiện gia đình, thăm cơ quan công quyền, thi/phỏng vấn, hoặc các lý do bất khả kháng khác.",
+                "templateA_items_strong": "Mục bắt buộc:", "templateA_items": "Thông tin học sinh; Ngày/Giờ; Lý do (ngắn gọn); Tình trạng tài liệu chứng minh; Chữ ký/Liên hệ PH; Ngày nộp.",
+                "templateA_template_title": "Mẫu:",
+                "templateA_template": "Tiêu đề: Đơn xin vắng mặt/đi trễ/về sớm\nHọc sinh: {Họ tên} ({Khối/Lớp/Số} / Ngày sinh {YYYY-MM-DD})\nNgày/Giờ: {YYYY-MM-DD hoặc HH:MM}\nLý do/Nội dung: {1-2 câu ngắn gọn}\nTài liệu chứng minh: {Giấy khám/Lịch hẹn/Không có}\nYêu cầu (Tùy chọn): {VD: Vui lòng gọi điện}\nChữ ký/Liên hệ PH: {Chữ ký} / {Điện thoại}\nNgày nộp: {YYYY-MM-DD}",
+                "templateB_title": "B. Đơn xin/Báo cáo Học tập Trải nghiệm",
+                "templateB_when_strong": "Khi nào?", "templateB_when": "Du lịch gia đình, thăm thân nhân, trải nghiệm nghề nghiệp, v.v., khi cần học ngoài khuôn viên trường.",
+                "templateB_items_strong": "Mục bắt buộc:", "templateB_items": "Thông tin học sinh; Thời gian/Địa điểm; Mục tiêu/Nội dung học tập; Kế hoạch an toàn; Chữ ký PH; (Đối với báo cáo) Cảm nhận & Tài liệu chứng minh.",
+                "templateB_template_title": "Mẫu (Đơn xin):",
+                "templateB_template": "Tiêu đề: Đơn xin Học tập Trải nghiệm\nHọc sinh: {Họ tên} ({Khối/Lớp/Số} / Ngày sinh {YYYY-MM-DD})\nThời gian: {YYYY-MM-DD} ~ {YYYY-MM-DD}\nĐịa điểm: {VD: Bảo tàng Khoa học Quốc gia / Nhà người thân}\nMục tiêu/Nội dung học tập: {VD: Quan sát triển lãm vật lý và viết báo cáo}\nKế hoạch an toàn: {PH đi kèm/Có thể liên lạc/Tình trạng bảo hiểm}\nTài liệu chứng minh: {Lịch trình/Chi tiết đặt chỗ/Không có}\nChữ ký/Liên hệ PH: {Chữ ký} / {Điện thoại}",
+                "templateC_title": "C. Giấy đồng ý tham gia Chuyến đi thực tế/Sự kiện",
+                "templateC_when_strong": "Khi nào?", "templateC_when": "Dã ngoại, du lịch học tập, tham quan, tham gia biểu diễn/thi đấu, v.v., khi có hoạt động tập thể.",
+                "templateC_items_strong": "Mục bắt buộc:", "templateC_items": "Tên sự kiện/Lịch trình/Địa điểm; Danh sách liên hệ khẩn cấp; Thông tin sức khỏe (Dị ứng/Thuốc men); Đồng ý an toàn; Chữ ký.",
+                "templateC_template_title": "Mẫu:",
+                "templateC_template": "Tiêu đề: Giấy đồng ý tham gia Sự kiện\nTên SK/Địa điểm/Lịch trình: {Tên SK}, {Địa điểm}, {YYYY-MM-DD (HH:MM~HH:MM)}\nHọc sinh: {Họ tên} ({Khối/Lớp/Số})\nThông tin sức khỏe: {Dị ứng/Thuốc men/Không có}\nLiên hệ khẩn cấp: {Điện thoại PH1} / {Điện thoại PH2}\nĐồng ý an toàn: Tôi đồng ý tuân thủ các hướng dẫn an toàn của trường trong sự kiện.\nChữ ký PH: {Chữ ký}",
+                "templateD_title": "D. Đơn xin Tư vấn (Phỏng vấn) Phụ huynh",
+                "templateD_when_strong": "Khi nào?", "templateD_when": "Yêu cầu tư vấn về học tập, đời sống, hành vi, v.v.",
+                "templateD_items_strong": "Mục bắt buộc:", "templateD_items": "Chủ đề mong muốn; Lịch trình mong muốn (nhiều lựa chọn); Kênh (Trực tiếp/Điện thoại/Trực tuyến); Liên hệ.",
+                "templateD_template_title": "Mẫu:",
+                "templateD_template": "Tiêu đề: Đơn xin Tư vấn\nHọc sinh: {Họ tên} ({Khối/Lớp/Số})\nChủ đề: {VD: Không nộp bài tập/Quan hệ bạn bè/Tư vấn hướng nghiệp}\nLịch trình mong muốn: {Nguyện vọng 1 Ngày/Giờ}, {Nguyện vọng 2 Ngày/Giờ}\nPhương thức: {Trực tiếp/Điện thoại/Video}\nLiên hệ: {Điện thoại}\nChữ ký PH: {Chữ ký}",
+
+                // education_language.html
+                "backLink_lang": "← Quay lại trang chính",
+                "mainTitle_lang": "Hướng Dẫn Ngôn Ngữ Giáo Dục Thiết Yếu",
+                "mainSubtitle_lang": "Hướng dẫn các thuật ngữ và cách diễn đạt thiết yếu thường gặp trong đời sống học đường Hàn Quốc bằng bốn ngôn ngữ.",
+                "section1Title": "1) Từ điển Mini Thuật ngữ Giáo dục Cốt lõi (KO/EN/ZH/VI)",
+                "dictBody_lang": [ ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["출결", "Attendance", "出勤", "Đi học/vắng mặt"], ["수행평가", "Performance assessment", "过程性评价", "Đánh giá thực hiện"], ["보건실/행정실", "Health room/Admin office", "保健室/行政办公室", "Phòng y tế/Hành chính"], ["준비물/제출 마감", "Supplies/Deadline", "学习用品/截止日期", "Dụng cụ/Hạn nộp"], ["동의서/회신서", "Consent/Reply slip", "同意书/回执", "Giấy đồng ý/phiếu phản hồi"] ],
+                "section2Title": "2) Mẫu Câu Giao Tiếp Thiết Yếu (Sử dụng Ngay)",
+                "phraseTitleA": "A) Học sinh → Giáo viên (Khi hỏi/yêu cầu)",
+                "phraseA_ko": "Yêu cầu hỏi/giải thích lại", "phraseA_text": "Thưa cô thầy, cô thầy có thể giải thích lại (bài tập/thông báo) được không?",
+                "phraseB_ko": "Kiểm tra hạn chót/định dạng", "phraseB_text": "Hạn chót là khi nào? Xin cho biết định dạng tệp.",
+                "phraseC_ko": "Yêu cầu về sớm/phòng y tế", "phraseC_text": "Em cần về sớm do vấn đề sức khỏe. Em có thể đến phòng y tế trước được không?",
+                "phraseTitleB": "B) Phụ huynh → Giáo viên/Trường (Khi liên hệ/yêu cầu hợp tác)",
+                "phraseD_ko": "Hỏi về thông báo nhà trường", "phraseD_text": "Tôi muốn hỏi chi tiết hơn về {lịch trình/nội dung} trong thông báo nhà trường.",
+                "phraseE_ko": "Yêu cầu/đặt lịch tư vấn", "phraseE_text": "Tôi xin đặt lịch tư vấn với cô thầy. Xin cho biết thời gian nào cô thầy có thể gặp.",
+                "phraseF_ko": "Hợp tác về chế độ ăn/sức khỏe", "phraseF_text": "Con tôi bị dị ứng và cần bữa ăn thay thế. Xin hướng dẫn quy trình.",
+                "section3Title": "3) Quy tắc tránh sai sót khi làm tài liệu/giao tiếp",
+                "rule1": "<strong>Định dạng Ngày:</strong> Định dạng YYYY-MM-DD (VD: 2025-10-24). Khoảng thời gian là Ngày bắt đầu ~ Ngày kết thúc.",
+                "rule2": "<strong>Định dạng Giờ:</strong> Khuyến nghị dùng đồng hồ 24 giờ (VD: 08:30, 13:10).",
+                "rule3": "<strong>Quy tắc đặt tên tệp:</strong> 2025-10-24_Mã HS_Tên_Môn học (Tránh khoảng trắng/ký tự đặc biệt).",
+                "rule4": "<strong>Ghi chú số liên hệ:</strong> Giữ dấu gạch ngang (010-XXXX-YYYY) hoặc bao gồm mã quốc gia (+82).",
+
+                // korean_culture.html
+                "backLink_culture": "← Quay lại trang chính",
+                "mainTitle_culture": "Hướng Dẫn Cốt Lõi Văn Hóa Học Đường Hàn Quốc",
+                "mainSubtitle_culture": "Hướng dẫn tất cả văn hóa cần thiết trong đời sống học đường Hàn Quốc, bao gồm lịch trình hàng ngày, cách xưng hô, lễ nghi và sự tham gia của phụ huynh.",
+                "disclaimer_culture": "[Lưu ý] Các quy định chi tiết có thể khác nhau tùy theo trường/khối lớp/GVCN. Luôn tuân thủ các thông báo của trường là ưu tiên hàng đầu.",
+                "section1Title_culture": "1) Lịch trình Hàng ngày·Thời khóa biểu & Quy tắc Lớp học",
+                "accA_title": "Lịch trình Hàng ngày và Quản lý Thời gian",
+                "accA_list": ["<strong>Đến trường (Arrive):</strong> Thường vào khoảng 08:00. Báo lý do đi trễ cho giáo viên chủ nhiệm.", "<strong>Tiết học (Class):</strong> Đơn vị 40-50 phút, việc di chuyển phòng học theo môn thường xuyên xảy ra ở cấp THCS/THPT.", "<strong>Giờ giải lao (Break):</strong> Khoảng 10 phút. Chuẩn bị cho tiết học tiếp theo, đi vệ sinh, hoặc bổ sung nước.", "<strong>Ăn trưa (Lunch):</strong> Bữa ăn do trường cung cấp hoặc mang cơm hộp (kiểm tra hướng dẫn của trường).", "<strong>Kết thúc (Closing):</strong> Kiểm tra bài tập và thông báo. Sau đó là các lớp học thêm/câu lạc bộ/tự học."],
+                "accA_quick_title": "👉 Cụm từ Nhanh (Ví dụ đi trễ):",
+                "accA_quick_phrase": "Hôm nay em sẽ đến muộn, dự kiến 8:30 có mặt.",
+                "accB_title": "Quy Tắc Lớp Học và Trang Phục",
+                "accB_do_title": "✅ Phải Làm (Do):",
+                "accB_do_list": ["Chuẩn bị thẻ tên, dụng cụ viết, và bình nước", "Tuân thủ hạn chót nộp bài tập", "Tuân thủ thời gian: Ngồi vào chỗ và kiểm tra dụng cụ trước khi chuông reo"],
+                "accB_dont_title": "❌ Phải Tránh (Don't):",
+                "accB_dont_list": ["Ăn vặt trong giờ học", "Quay phim hoặc ghi âm mà không được phép", "Vi phạm quy định về trang phục/tóc trong trường (kiểm tra hướng dẫn của trường)"],
+                "section2Title_culture": "2) Thành viên Trường, Cách Xưng Hô và Liên hệ",
+                "section2List": ["<strong>GV Chủ nhiệm (Homeroom teacher):</strong> Cửa sổ liên hệ chính về điểm danh/đời sống/thông báo nhà trường.", "<strong>GV Bộ môn (Subject teacher):</strong> Hướng dẫn tiết học/đánh giá/bài tập môn học.", "<strong>Cách Xưng Hô:</strong> Xưng hô giáo viên là 'Seonsaengnim' (선생님) + kính ngữ (VD: 'Thưa cô thầy, em có câu hỏi'). Dùng kính ngữ an toàn hơn khi mới tiếp xúc với bạn cùng tuổi."],
+                "dictTitle_culture": "3) Từ điển Mini Thuật ngữ Học đường Thường dùng (KO/EN/ZH/VI)",
+                "dictBody_culture": [ ["담임교사", "Homeroom teacher", "班主任", "GVC phụ trách lớp"], ["가정통신문", "School notice", "家校通知", "Thông báo gửi phụ huynh"], ["수행평가", "Performance assessment", "过程性评价", "Đánh giá thực hiện"], ["생활기록부", "Student record", "学生成长记录", "Học bạ"], ["보건실", "Health room", "保健室", "Phòng y tế"], ["방과후학교", "Afterschool program", "课后班", "Chương trình sau giờ học"] ],
+                "section4Title": "4) Điểm Cần Hiểu về Văn Hóa & Danh Sách Kiểm Tra Học Sinh Mới",
+                "cultureTitle": "Điểm Cần Hiểu về Văn Hóa",
+                "cultureList": ["<strong>Hoạt động nhóm:</strong> Đề cao tinh thần đồng đội và phân chia vai trò. Lớp trưởng, trực nhật, trực ăn uống được luân phiên.", "<strong>Biểu hiện tôn trọng:</strong> Thường xuyên sử dụng các câu ngắn về chào hỏi, cảm ơn, xin lỗi (VD: 'Cảm ơn/Xin lỗi').", "<strong>Xếp hàng/Thứ tự:</strong> Coi trọng trật tự khi nhận bữa ăn và di chuyển.", "<strong>Văn hóa Thời gian:</strong> Có xu hướng xem việc đến sớm 5-10 phút là lịch sự."],
+                "culture_quick_title": "👉 Cụm từ Nhanh (Bắt đầu lịch sự):",
+                "culture_quick_phrase": "Xin lỗi / Xin lỗi, nhưng / Cảm ơn.",
+                "checklistTitle": "Danh Sách Kiểm Tra Học Sinh/Gia Đình Mới",
+                "checklistList": ["[ ] Kiểm tra vị trí và lưu số liên hệ của GVCN·Phòng Giáo vụ·Phòng Y tế", "[ ] Chuẩn bị thời khóa biểu, sách giáo khoa, giày đi trong nhà, và quần áo thể dục", "[ ] Nộp thông tin dị ứng·sức khỏe, đăng ký số liên hệ khẩn cấp", "[ ] Đăng ký kênh ứng dụng/thông báo của trường và cài đặt cảnh báo", "[ ] Lịch hóa ngày nộp bài tập·đánh giá, thống nhất quy tắc đặt tên tệp"],
+                "section5Title": "5) Các Câu Hỏi Thường Gặp (FAQ)",
+                "faqA_q": "Q1. Có thể sử dụng điện thoại trong giờ học không?",
+                "faqA_a": "Hầu hết bị hạn chế. Vui lòng tuân thủ hướng dẫn của giáo viên chủ nhiệm; việc thu điện thoại trong thời gian thi là phổ biến.",
+                "faqB_q": "Q2. Có thể điều chỉnh chế độ ăn uống, chẳng hạn như suất ăn chay/halal không?",
+                "faqB_a": "Sự sẵn có và phương pháp khác nhau tùy theo trường, vì vậy cần tham khảo ý kiến trước với phòng y tế/phụ trách bữa ăn.",
+                "faqC_q": "Q3. Bài tập về nhà khó. Làm thế nào tôi có thể giúp?",
+                "faqC_a": "Cùng đọc hướng dẫn bài tập, trước hết khớp định dạng nộp (số lượng/tên tệp), sau đó sắp xếp những phần không hiểu thành danh sách câu hỏi để hỏi giáo viên.",
+                "faqD_q": "Q4. Tôi nghĩ một người bạn đang bị bắt nạt.",
+                "faqD_a": "An toàn và bảo vệ của học sinh bị hại là ưu tiên hàng đầu. Hãy thông báo ngay cho giáo viên chủ nhiệm và yêu cầu giúp đỡ."
+            }
+        };
+
+        // 뷰 전환 및 해시 업데이트 함수
+        function navigateTo(viewId) {
+            document.querySelectorAll('.content-view').forEach(view => {
+                view.style.display = 'none';
+                view.classList.remove('active');
+            });
+            const targetView = document.getElementById(`view-${viewId}`);
+            if (targetView) {
+                targetView.style.display = 'block';
+                targetView.classList.add('active');
+                // URL 해시 업데이트
+                window.location.hash = viewId === 'index' ? '' : `!${viewId}`;
+            } else {
+                // 존재하지 않는 뷰일 경우 인덱스로 리다이렉트 (예외 처리)
+                document.getElementById('view-index').style.display = 'block';
+                document.getElementById('view-index').classList.add('active');
+                window.location.hash = '';
+            }
+            // 페이지 상단으로 이동
+            window.scrollTo(0, 0);
+        }
+
+        // 2. 언어 변경 함수 (모든 뷰의 동적 콘텐츠 렌더링 포함)
+        function changeLanguage(lang) {
+            // A. data-key 속성을 가진 모든 HTML 요소 번역
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                const text = translations[lang][key];
+                if (text) {
+                    element.innerHTML = text;
+                }
+            });
+            
+            // B. document_guide.html 동적 콘텐츠 렌더링
+            if (translations[lang].principleList) {
+                const principleListUl = document.querySelector('[data-key="principleList"]');
+                principleListUl.innerHTML = translations[lang].principleList.map(item => `<li>${item}</li>`).join('');
+            }
+            if (translations[lang].dictBody_doc) {
+                const dictBodyTbody = document.querySelector('[data-key="dictBody_doc"]');
+                dictBodyTbody.innerHTML = translations[lang].dictBody_doc.map(row => 
+                    `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td></tr>`
+                ).join('');
+            }
+            
+            // document_guide.html 템플릿 코드 렌더링 (pre 태그)
+            document.querySelector('[data-key="templateA_template"]').textContent = translations[lang].templateA_template;
+            document.querySelector('[data-key="templateB_template"]').textContent = translations[lang].templateB_template;
+            document.querySelector('[data-key="templateC_template"]').textContent = translations[lang].templateC_template;
+            document.querySelector('[data-key="templateD_template"]').textContent = translations[lang].templateD_template;
+
+            // C. education_language.html 동적 콘텐츠 렌더링
+            if (translations[lang].dictBody_lang) {
+                const dictBodyLangTbody = document.querySelector('[data-key="dictBody_lang"]');
+                dictBodyLangTbody.innerHTML = translations[lang].dictBody_lang.map(row => 
+                    `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td></tr>`
+                ).join('');
+            }
+
+            // education_language.html 문장틀 렌더링
+            document.querySelector('[data-key="phraseA_text"]').textContent = translations[lang].phraseA_text;
+            document.querySelector('[data-key="phraseB_text"]').textContent = translations[lang].phraseB_text;
+            document.querySelector('[data-key="phraseC_text"]').textContent = translations[lang].phraseC_text;
+            document.querySelector('[data-key="phraseD_text"]').textContent = translations[lang].phraseD_text;
+            document.querySelector('[data-key="phraseE_text"]').textContent = translations[lang].phraseE_text;
+            document.querySelector('[data-key="phraseF_text"]').textContent = translations[lang].phraseF_text;
+
+
+            // D. korean_culture.html 동적 콘텐츠 렌더링
+            const culture_elements = ["accA_list", "accB_do_list", "accB_dont_list", "section2List", "cultureList", "checklistList"];
+            culture_elements.forEach(key => {
+                const ul = document.querySelector(`[data-key="${key}"]`);
+                if (ul && translations[lang][key]) {
+                    ul.innerHTML = translations[lang][key].map(item => `<li>${item}</li>`).join('');
+                }
+            });
+
+            if (translations[lang].dictBody_culture) {
+                const dictBodyCultureTbody = document.querySelector('[data-key="dictBody_culture"]');
+                dictBodyCultureTbody.innerHTML = translations[lang].dictBody_culture.map(row => 
+                    `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td></tr>`
+                ).join('');
+            }
+            
+            document.documentElement.lang = lang;
+            updateActiveButton(lang);
+        }
+
+        // 3. 활성 버튼 스타일 변경 함수
+        function updateActiveButton(activeLang) {
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                button.classList.remove('active');
+            });
+            const activeButton = document.getElementById(`lang-btn-${activeLang}`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+        
+        // 4. 아코디언 토글 함수 (문서 가이드, 문화 가이드 모두 사용)
+        function toggleAccordion(header) {
+            const item = header.closest('.accordion-item');
+            const content = item.querySelector('.accordion-content');
+            
+            const isActive = item.classList.contains('active');
+            const parentSection = item.closest('section');
+
+            // 같은 섹션 내의 다른 아코디언 닫기
+            parentSection.querySelectorAll('.accordion-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.accordion-content').style.display = 'none';
+                }
+            });
+
+            // 현재 항목 열기/닫기
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.display = 'block';
+            } else {
+                item.classList.remove('active');
+                content.style.display = 'none';
+            }
+        }
+
+        // 5. 페이지 로드 시 초기 언어 및 뷰 설정
+        function initializePage() {
+            // 1. 초기 언어 설정 (URL 파라미터 또는 기본값 'ko')
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialLang = urlParams.get('lang') || 'ko';
+            changeLanguage(initialLang);
+
+            // 2. 초기 뷰 설정 (URL 해시 또는 기본값 'index')
+            const hash = window.location.hash.slice(1);
+            const initialView = hash.startsWith('!') ? hash.slice(1) : 'index';
+            navigateTo(initialView);
+        }
+
+        window.onload = initializePage;
+        
+        // 해시 변경 시 뷰 전환 (브라우저 뒤로가기/앞으로가기 버튼 지원)
+        window.onhashchange = function() {
+            const hash = window.location.hash.slice(1);
+            const viewId = hash.startsWith('!') ? hash.slice(1) : 'index';
+            
+            // navigateTo 내부에서 해시를 업데이트하므로, 여기서는 직접 display만 처리
+            document.querySelectorAll('.content-view').forEach(view => {
+                view.style.display = 'none';
+                view.classList.remove('active');
+            });
+            const targetView = document.getElementById(`view-${viewId}`);
+            if (targetView) {
+                targetView.style.display = 'block';
+                targetView.classList.add('active');
+                // 언어 변경 후 동적 콘텐츠가 로드되도록 강제 호출
+                // 현재 활성화된 버튼을 찾아 언어를 다시 설정 (예: 'ko')
+                const activeBtn = document.querySelector('.lang-switcher button.active');
+                if (activeBtn) {
+                    changeLanguage(activeBtn.id.replace('lang-btn-', ''));
+                } else {
+                    changeLanguage('ko'); // fallback
+                }
+                
+            } else {
+                document.getElementById('view-index').style.display = 'block';
+                document.getElementById('view-index').classList.add('active');
+            }
+        };
+
+        // 초기 로드 시 한 번 실행
+        // window.onload = initializePage; // 이미 위에서 정의
+        
+    </script>
+</body>
+</html>
